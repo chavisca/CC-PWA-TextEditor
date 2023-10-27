@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
-const { InjectManifest } = require('workbox-webpack-plugin');
+const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
 // TODO: Add CSS loaders and babel to webpack.
@@ -22,7 +23,7 @@ module.exports = () => {
         template: './index.html',
         title: 'JATE - Just Another Text Editor'
       }),
-
+      new MiniCssExtractPlugin(),
       new GenerateSW(),
       new WebpackPwaManifest({
         name: 'Jate',
@@ -43,7 +44,7 @@ module.exports = () => {
 
       new InjectManifest({
         swSrc: './src-sw.js',
-        swwDest: 'src-sw.js',
+        swDest: 'src-sw.js',
       })
     ],
 
@@ -51,7 +52,7 @@ module.exports = () => {
       rules: [
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
           test: /\.m?js$/,
