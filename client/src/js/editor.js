@@ -12,7 +12,7 @@ export default class {
     }
 
     this.editor = CodeMirror(document.querySelector('#main'), {
-      value: '',
+      value: 'header',
       mode: 'javascript',
       theme: 'monokai',
       lineNumbers: true,
@@ -36,7 +36,10 @@ export default class {
     // Save the content of the editor when the editor itself is loses focus
     this.editor.on('blur', () => {
       console.log('The editor has lost focus');
-      putDb(localStorage.getItem('content'));
-    });
+      const content = localStorage.getItem('content');
+      if (content) {
+        const timestamp = new Date().getTime();
+      putDb(timestamp, content);
+    }});
   }
 }
