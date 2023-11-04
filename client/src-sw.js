@@ -42,5 +42,3 @@ registerRoute(({ request }) =>
     request.destination === 'image',
   assetCache
 );
-
-registerRoute();
