@@ -33,6 +33,10 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
+const offlineFallbackHandler = async ({ event, request }) => {
+  return caches.match('/index.html');
+};
+
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
@@ -42,3 +46,5 @@ registerRoute(({ request }) =>
     request.destination === 'image',
   assetCache
 );
+
+offlineFallback(offlineFallbackHandler);
