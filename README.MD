@@ -23,4 +23,4 @@ https://github.com/chavisca/CC-PWA-TextEditor
 
 ## Screenshot
 
-![Screenshot_of_the_Express_Note_Taker](/assets/images/Screenshot.JPG)
+![Screenshot_of_the_CC-PWA-TextEditor](/assets/images/Screenshot.JPG)
